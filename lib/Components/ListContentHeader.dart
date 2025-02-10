@@ -123,14 +123,21 @@ class ListContentHeader extends StatelessWidget {
           TextButton(
             onPressed: () {},
             style: ButtonStyle(
-              shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5))),
-              backgroundColor: WidgetStateProperty.all(
-                  const Color.fromARGB(255, 206, 206, 206)), // Corrected
-            ),
+                shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5))),
+                backgroundColor: themeManager.mode.value == false
+                    ? WidgetStateProperty.all(
+                        const Color.fromARGB(255, 206, 206, 206))
+                    : WidgetStateProperty.all(
+                        customDarkMode["white"]) // Corrected
+                ),
             child: Text(
               "Add Note",
-              style: TextStyle(color: Colors.green), // Text color for button
+              style: TextStyle(
+                color: themeManager.mode.value == false
+                    ? Colors.green
+                    : customDarkMode["blackColor"],
+              ), // Text color for button
             ),
           ),
         ],
