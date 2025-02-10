@@ -58,13 +58,34 @@ class RightSideBar extends StatelessWidget {
           Divider(),
           ListTile(
             contentPadding: EdgeInsets.fromLTRB(20, 5, 20, 10),
-            leading: Icon(Icons.close),
+            leading: Icon(
+              Icons.close,
+              color: themeManager.mode.value == false
+                  ? customLightMode["blackColor"]
+                  : customDarkMode["white"],
+            ),
             title: Text(
               'Created Today',
               textAlign: TextAlign.center,
+              style: TextStyle(
+                color: themeManager.mode.value == false
+                    ? customLightMode["blackColor"]
+                    : customDarkMode["white"],
+              ),
             ),
             trailing: IconButton(
-                onPressed: () {}, icon: Icon(Icons.delete_forever_outlined)),
+                onPressed: () {},
+                icon: Icon(
+                  Icons.delete_forever_outlined,
+                  color: themeManager.mode.value == false
+                      ? customLightMode["blackColor"]
+                      : customDarkMode["white"],
+                )),
+          ),
+          Divider(
+            color: themeManager.mode.value == false
+                ? customLightMode["blackColor"]
+                : customDarkMode["white"],
           )
         ],
       ),
