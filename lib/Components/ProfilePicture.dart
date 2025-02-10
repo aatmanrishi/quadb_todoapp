@@ -11,7 +11,7 @@ class ProfilePicture extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeManager = Get.find<Thememanager>();
     return Container(
-      height: 170, // Container height
+      height: 200, // Container height
       width: 250, // Container width // Container background color
       child: Stack(
         children: [
@@ -27,10 +27,29 @@ class ProfilePicture extends StatelessWidget {
               )),
           Positioned(
             left: 50,
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://th.bing.com/th/id/OIP.OwNfXHWEAynGbQwhmUNQWwHaKk?rs=1&pid=ImgDetMain'), // Circle background color
-              radius: 80, // Circle radius
+            child: Column(
+              children: [
+                CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      'https://th.bing.com/th/id/OIP.OwNfXHWEAynGbQwhmUNQWwHaKk?rs=1&pid=ImgDetMain'), // Circle background color
+                  radius: 80, // Circle radius
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Scarlet Jhonson",
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: themeManager.mode.value == false
+                          ? customLightMode["darkColor"]
+                          : customDarkMode["white"]),
+                ),
+                // SizedBox(
+                //   height: 20,
+                // )
+              ],
             ),
           ),
         ],

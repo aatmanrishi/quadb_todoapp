@@ -26,9 +26,15 @@ class ListContentHeader extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width,
             child: TextField(
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(
+                color: themeManager.mode.value == false
+                    ? customLightMode["darkColor"]
+                    : customDarkMode["white"],
+              ),
               maxLines: 5,
-              cursorColor: Colors.black,
+              cursorColor: themeManager.mode.value == false
+                  ? customLightMode["darkColor"]
+                  : customDarkMode["white"],
               decoration: InputDecoration(
                 enabledBorder: InputBorder.none,
                 border: InputBorder.none,

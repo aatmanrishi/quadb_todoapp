@@ -13,14 +13,41 @@ class Customappbar extends StatelessWidget {
       backgroundColor: themeManager.mode.value == false
           ? customLightMode["primaryBackground"]
           : customDarkMode["primaryBackground"],
-      leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
-      title: Text('Do It'),
+      leading: IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.menu,
+            color: themeManager.mode.value == false
+                ? customLightMode["blackColor"]
+                : customDarkMode["white"],
+          )),
+      title: Text(
+        'Do It',
+        style: TextStyle(
+            color: themeManager.mode.value == false
+                ? customLightMode["blackColor"]
+                : customDarkMode["white"]),
+      ),
       actions: [
-        IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+        IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.search,
+              color: themeManager.mode.value == false
+                  ? customLightMode["blackColor"]
+                  : customDarkMode["white"],
+            )),
         SizedBox(
           width: 10,
         ),
-        IconButton(onPressed: () {}, icon: Icon(Icons.grid_view_sharp)),
+        IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.grid_view_sharp,
+              color: themeManager.mode.value == false
+                  ? customLightMode["blackColor"]
+                  : customDarkMode["white"],
+            )),
         SizedBox(
           width: 10,
         ),
@@ -28,7 +55,12 @@ class Customappbar extends StatelessWidget {
             onPressed: () {
               themeManager.manageTheme();
             },
-            icon: Icon(Icons.nights_stay_outlined)),
+            icon: themeManager.mode.value == false
+                ? Icon(Icons.nights_stay_outlined)
+                : Icon(
+                    Icons.sunny,
+                    color: Colors.white,
+                  )),
         SizedBox(width: 50)
       ],
     );

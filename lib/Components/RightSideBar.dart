@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:quadb_todoapp/Components/RightSideContainerTile.dart';
 import 'package:quadb_todoapp/Components/TaskListTile.dart';
+import 'package:quadb_todoapp/Theme/ThemeManager.dart';
+
+import '../Theme/Theme.dart';
 
 class RightSideBar extends StatelessWidget {
   const RightSideBar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final themeManager = Get.find<Thememanager>();
     return Container(
       padding: EdgeInsets.only(left: 50, top: 35),
-      color: Colors.green[100],
+      color: themeManager.mode.value == false
+          ? customLightMode["secondaryBackground"]
+          : customDarkMode["secondaryDarkMode"],
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -27,10 +34,23 @@ class RightSideBar extends StatelessWidget {
           RightSideContainerTile(icon: Icons.repeat, title: "Repeat"),
           TextField(
             maxLines: 15,
+            style: TextStyle(
+              color: themeManager.mode.value == false
+                  ? customLightMode["darkColor"]
+                  : customDarkMode["white"],
+            ),
+            cursorColor: themeManager.mode.value == false
+                ? customLightMode["darkColor"]
+                : customDarkMode["white"],
             decoration: InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 hintText: "Add Notes",
+                hintStyle: TextStyle(
+                  color: themeManager.mode.value == false
+                      ? customLightMode["darkColor"]
+                      : customDarkMode["white"],
+                ),
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 border: InputBorder.none),

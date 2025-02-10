@@ -21,6 +21,7 @@ class LeftSideBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ProfilePicture(),
+  
           Container(
             width: 250,
             padding: EdgeInsets.symmetric(horizontal: 20),
