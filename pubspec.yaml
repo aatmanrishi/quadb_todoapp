@@ -37,6 +37,9 @@ dependencies:
   sidebarx: ^0.17.1
   fl_chart: ^0.70.2
   get: ^4.6.6
+  awesome_snackbar_content: ^0.1.5
+  fluttertoast: ^8.2.11
+  flutter_sliding_toast: ^1.4.3
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:quadb_todoapp/Theme/Theme.dart';
+import 'package:quadb_todoapp/Controller/Theme/Theme.dart';
+import 'package:quadb_todoapp/Controller/UiController/UiController.dart';
 
-import '../Theme/ThemeManager.dart';
+import '../Controller/Theme/ThemeManager.dart';
 
 class ListContentHeader extends StatelessWidget {
   const ListContentHeader({super.key});
@@ -10,6 +12,7 @@ class ListContentHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeManager = Get.find<Thememanager>();
+    final uiController = Get.find<Uicontroller>();
     return Container(
       color: themeManager.mode.value == false
           ? Colors.white
@@ -26,6 +29,13 @@ class ListContentHeader extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width,
             child: TextField(
+              onTap: () {
+                // if user click on it then enable right Sidebar to appear.....
+                if (uiController.isRightSideContainerEnabled.value == false) {
+                  uiController.isRightSideContainerEnabled.value = true;
+                }
+              },
+              controller: uiController.textController.value,
               style: TextStyle(
                 color: themeManager.mode.value == false
                     ? customLightMode["darkColor"]
@@ -84,6 +94,8 @@ class ListContentHeader extends StatelessWidget {
   // Buttons Row
   ButtonsRow() {
     final themeManager = Get.find<Thememanager>();
+    final uiController = Get.find<Uicontroller>();
+    final textController = TextEditingController();
     return Padding(
       padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
       child: Row(
@@ -121,23 +133,48 @@ class ListContentHeader extends StatelessWidget {
             ],
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              print(uiController.textController.value.text);
+
+              // Check if the text field is not empty
+              if (uiController.textController.value.text.isNotEmpty) {
+                // Call the addContentTask method with the text
+                uiController.addContentTask(
+                    index: themeManager.taksIndex.value,
+                    name: uiController.textController.value.text);
+                uiController.textController.value.clear();
+                // uiController.isRightSideContainerEnabled.value = false;
+              } else {
+                // Show a toast message if the text field is empty
+                Fluttertoast.showToast(
+                  msg: "Please enter a task", // Improved message
+                  gravity: ToastGravity.TOP,
+                  webPosition: "center",
+                  timeInSecForIosWeb: 1,
+                  webBgColor: "white",
+                  backgroundColor: Colors.white,
+                  textColor: Colors.green,
+                  fontSize: 20.0,
+                );
+              }
+            },
             style: ButtonStyle(
-                shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5))),
-                backgroundColor: themeManager.mode.value == false
-                    ? WidgetStateProperty.all(
-                        const Color.fromARGB(255, 206, 206, 206))
-                    : WidgetStateProperty.all(
-                        customDarkMode["white"]) // Corrected
-                ),
+              shape: WidgetStatePropertyAll(
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+              ),
+              backgroundColor: themeManager.mode.value == false
+                  ? WidgetStatePropertyAll(
+                      const Color.fromARGB(255, 206, 206, 206),
+                    )
+                  : WidgetStatePropertyAll(customDarkMode["white"]),
+            ),
             child: Text(
               "Add Note",
               style: TextStyle(
                 color: themeManager.mode.value == false
                     ? Colors.green
                     : customDarkMode["blackColor"],
-              ), // Text color for button
+              ),
             ),
           ),
         ],

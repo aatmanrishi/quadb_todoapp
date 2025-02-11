@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quadb_todoapp/Theme/ThemeManager.dart';
-import '../Theme/Theme.dart';
+import 'package:quadb_todoapp/Controller/Theme/ThemeManager.dart';
+import '../Controller/Theme/Theme.dart';
 
 class AddListButton extends StatelessWidget {
   const AddListButton({super.key});

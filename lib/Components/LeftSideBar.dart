@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quadb_todoapp/Theme/Theme.dart';
-import 'package:quadb_todoapp/Theme/ThemeManager.dart';
+import 'package:quadb_todoapp/Controller/Theme/Theme.dart';
+import 'package:quadb_todoapp/Controller/Theme/ThemeManager.dart';
 
 import 'AddListButton.dart';
 import 'PieChart.dart';

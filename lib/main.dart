@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:quadb_todoapp/Controller/UiController/UiController.dart';
 import 'package:quadb_todoapp/Pages/Home.dart';
 import 'package:get/get.dart';
-import './Theme/ThemeManager.dart';
+import 'Controller/Theme/ThemeManager.dart';
 
 void main() {
   // Initialize Thememanager before the app runs
   Get.put(Thememanager());
+  Get.put(Uicontroller());
   runApp(const MyApp());
 }
 

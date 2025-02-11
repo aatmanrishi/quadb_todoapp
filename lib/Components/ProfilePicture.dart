@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quadb_todoapp/Theme/ThemeManager.dart';
+import 'package:quadb_todoapp/Controller/Theme/ThemeManager.dart';
 
-import '../Theme/Theme.dart';
+import '../Controller/Theme/Theme.dart';
 
 class ProfilePicture extends StatelessWidget {
   const ProfilePicture({super.key});

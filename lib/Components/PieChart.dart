@@ -1,8 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quadb_todoapp/Theme/Theme.dart';
-import 'package:quadb_todoapp/Theme/ThemeManager.dart';
+import 'package:quadb_todoapp/Controller/Theme/Theme.dart';
+import 'package:quadb_todoapp/Controller/Theme/ThemeManager.dart';
 
 class YourPieChart extends StatelessWidget {
   const YourPieChart({super.key});

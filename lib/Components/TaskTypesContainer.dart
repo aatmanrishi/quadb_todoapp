@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quadb_todoapp/Components/TaskTile.dart';
-import 'package:quadb_todoapp/Theme/Theme.dart';
-import 'package:quadb_todoapp/Theme/ThemeManager.dart';
+import 'package:quadb_todoapp/Controller/Theme/Theme.dart';
+import 'package:quadb_todoapp/Controller/Theme/ThemeManager.dart';
 
 class TaskTypeContainer extends StatelessWidget {
   const TaskTypeContainer({super.key});
@@ -12,22 +12,26 @@ class TaskTypeContainer extends StatelessWidget {
     final themeManager = Get.find<Thememanager>();
     List<Map<String, dynamic>> listData = [
       {
+        "index": 0,
         "title": "All Task",
         "icon": Icons.event_note_outlined,
       },
       {
+        "index":1,
         "title": "Today",
         "icon": Icons.today,
       },
       {
+        "index":2,
         "title": "Important",
         "icon": Icons.sticky_note_2_outlined,
       },
-      {
+      {  "index":3,
         "title": "Assigned to me",
         "icon": Icons.accessibility_new_outlined,
       },
       {
+        "index":4,
         "title": "Planned",
         "icon": Icons.calendar_month_outlined,
       },
@@ -47,6 +51,7 @@ class TaskTypeContainer extends StatelessWidget {
             Column(
               children: [
                 TaskTile(
+                  index:data["index"],
                   title: data["title"],
                   icon: data["icon"],
                 ),

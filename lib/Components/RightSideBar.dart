@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quadb_todoapp/Components/RightSideContainerTile.dart';
 import 'package:quadb_todoapp/Components/TaskListTile.dart';
-import 'package:quadb_todoapp/Theme/ThemeManager.dart';
+import 'package:quadb_todoapp/Controller/Theme/ThemeManager.dart';
 
-import '../Theme/Theme.dart';
+import '../Controller/Theme/Theme.dart';
+import '../Controller/UiController/UiController.dart';
 
 class RightSideBar extends StatelessWidget {
   const RightSideBar({super.key});
@@ -12,6 +13,7 @@ class RightSideBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeManager = Get.find<Thememanager>();
+    final uiController = Get.find<Uicontroller>();
     return Container(
       padding: EdgeInsets.only(left: 50, top: 35),
       color: themeManager.mode.value == false
@@ -58,11 +60,16 @@ class RightSideBar extends StatelessWidget {
           Divider(),
           ListTile(
             contentPadding: EdgeInsets.fromLTRB(20, 5, 20, 10),
-            leading: Icon(
-              Icons.close,
-              color: themeManager.mode.value == false
-                  ? customLightMode["blackColor"]
-                  : customDarkMode["white"],
+            leading: IconButton(
+              onPressed: () {
+                uiController.isRightSideContainerEnabled.value = false;
+              },
+              icon: Icon(
+                Icons.close,
+                color: themeManager.mode.value == false
+                    ? customLightMode["blackColor"]
+                    : customDarkMode["white"],
+              ),
             ),
             title: Text(
               'Created Today',

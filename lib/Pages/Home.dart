@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quadb_todoapp/Components/CompletedTask.dart';
 import 'package:quadb_todoapp/Components/CustomAppBar.dart';
 import 'package:quadb_todoapp/Components/LeftSideBar.dart';
 import 'package:quadb_todoapp/Components/ListContentHeader.dart';
+import 'package:quadb_todoapp/Components/MidContent.dart';
+import 'package:quadb_todoapp/Components/MidContentGridWise.dart';
 import 'package:quadb_todoapp/Components/TaskListTile.dart';
-import 'package:quadb_todoapp/Theme/Theme.dart';
-import 'package:quadb_todoapp/Theme/ThemeManager.dart';
-
+import 'package:quadb_todoapp/Controller/Theme/Theme.dart';
+import 'package:quadb_todoapp/Controller/Theme/ThemeManager.dart';
 import '../Components/RightSideBar.dart';
+import '../Controller/UiController/UiController.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -15,6 +18,8 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeManager = Get.find<Thememanager>();
+    final uiController = Get.find<Uicontroller>();
+
     return Obx(() {
       return Scaffold(
         backgroundColor: themeManager.mode.value == false
@@ -33,25 +38,35 @@ class Home extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Center content
-                    LeftSideBar(),
+                    // Left Side Content
+                    uiController.isMenu.value == true
+                        ? LeftSideBar()
+                        : SizedBox(),
                     Expanded(
+                      flex: 2,
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 30),
                         child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             ListContentHeader(),
-                            TaskListTile(),
-                            TaskListTile(),
-                            TaskListTile(),
-                            TaskListTile(),
-                            TaskListTile(),
-                            TaskListTile(),
+                            uiController.isColumn.value == true
+                                ? MidContentContainerColumnWise()
+                                : MidContentGridWise(),
+                            // MidContentContainerColumnWise(),
+                            uiController.completedTask.value.isNotEmpty
+                                ? CompletedTaskList()
+                                : SizedBox(),
+                            CompletedTaskList(),
                           ],
                         ),
                       ),
                     ),
-                    Expanded(child: RightSideBar())
+                    // Right Side Content
+                    uiController.isRightSideContainerEnabled.value == true
+                        ? Expanded(flex: 1, child: RightSideBar())
+                        : SizedBox(),
                   ],
                 ),
               ],
